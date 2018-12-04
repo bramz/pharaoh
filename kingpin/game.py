@@ -1,4 +1,3 @@
-import asyncio
 import random
 from player import create_player
 
