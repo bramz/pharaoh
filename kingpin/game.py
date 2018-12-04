@@ -66,6 +66,11 @@ def item_type() -> str:
     return dtype
 
 
+def receive_units() -> int:
+    quantity = input("How many units? ")
+    return quantity
+
+
 def buying_selling(action: str):
     if action == "buy":
         buying_items(purchase_type())
@@ -137,11 +142,6 @@ def check_sales_total(quantity: int, item: str, price: int, total_cost: int, pla
 
 def random_price(price_rangex, price_rangey) -> str:
     return "$%i" % random.randint(price_rangex, price_rangey)
-
-
-def receive_units() -> int:
-    quantity = input("How many units? ")
-    return quantity
 
 
 def determine_total_cost(price: int, quantity: int) -> int:
