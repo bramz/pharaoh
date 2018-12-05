@@ -18,17 +18,15 @@ def turn_loop():
 
 
 def handle_action():
-    action = input("Enter an action (buy/sell/travel/stats): ")
+    action = input("Enter an action (buy/sell/stats): ")
 
     if action == "buy":
         buying_selling(action)
     elif action == "sell":
         buying_selling(action)
-    elif action == "travel":
-        handle_travel()
     elif action == "stats":
         print(player.get_stats(), player.get_drugs(), player.get_weapons())
-                
+
 
 def list_drugs() -> dict:
     drugs_list = {
@@ -50,13 +48,8 @@ def list_weapons() -> dict:
     return weapons_list
 
 
-def handle_travel():
-    stats = player.get_stats()
-    print(stats)
-
-
 def purchase_type() -> str:
-    ptype = input("What will you buy (drugs/weapons)? ")
+    ptype = input("What will you buy or sell (drugs/weapons)? ")
     return ptype
 
 
@@ -125,7 +118,8 @@ def selling_items(ptype: str):
 
 def check_buy_total(quantity: int, item: str, price: int, total_cost: int, player_cash: int) -> str:
     if int(total_cost) <= int(player_cash):
-        player.receive_items(item, int(quantity))
+        player.update_items(item, int(quantity), "sub")
+        player.update_stats(total_cost, "sub", "cash")
         return "Purchasing {quantity} units of {item} at ${price} for ${total_cost}".format(quantity=quantity, price=price, total_cost=total_cost, item=item)
     else:
         return "You do not have enough money."
@@ -133,7 +127,8 @@ def check_buy_total(quantity: int, item: str, price: int, total_cost: int, playe
 
 def check_sales_total(quantity: int, item: str, price: int, total_cost: int, player_total: int) ->str:
     if int(player_total) >= int(quantity):
-        player.expell_items(item, int(quantity))
+        player.update_items(item, int(quantity), "add")
+        player.update_stats(total_cost, "add", "cash")
         return "Selling {quantity} units of {item} at ${price} for ${total_cost}".format(quantity=quantity, item=item, price=price, total_cost=total_cost)
     else:
         return "You do not have {quantity} units of {item}".format(quantity=quantity, item=item)
