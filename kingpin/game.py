@@ -32,7 +32,7 @@ def list_drugs() -> dict:
     drugs_list = {
         'cannabis': random_price(100, 1001),
         'cocaine': random_price(1000, 10001),
-        'heroin': random_price(10000, 30001),
+        'heroin': random_price(10000, 20001),
     }
     return drugs_list
 

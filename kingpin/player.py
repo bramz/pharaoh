@@ -4,7 +4,7 @@ class Player:
     def __init__(self, name):
         self.name = name
         self.stats = {
-            'cash': 1000,
+            'cash': 1001,
             'properties': 1,
             'cars': 0,
             'rank': 0,
