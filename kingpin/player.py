@@ -4,9 +4,7 @@ class Player:
     def __init__(self, name):
         self.name = name
         self.stats = {
-            'cash': 1000,
-            'properties': 1,
-            'cars': 0,
+            'cash': 2000,
             'rank': 0,
         }
 
@@ -66,51 +64,45 @@ class Player:
             if operation == "add":
                 total = int(self.get_drug_quantity(item)) + amount
                 self.drugs[item] = total
-            elif operation == "sub":
+            else:
                 total = int(self.get_drug_quantity(item)) - amount
                 self.drugs[item] = total
         if item in self.weapons:
             if operation == "add":
                 total = int(self.get_weapon_quantity(item)) + amount
                 self.weapons[item] = total
-            elif operation == "sub":
+            else:
                 total = int(self.get_weapon_quantity(item)) - amount
                 self.weapons[item] = total
 
 
-    def update_stats(self, amount: int, operation: str, stype: str) -> None:
-        if stype == "cash":
-            cash = self.get_cash()
-            if operation == "add":
-                new_cash = int(cash) + int(amount)
-                self.stats[stype] = new_cash
-            elif operation == "sub":
-                new_cash = int(cash) - int(amount)
-                self.stats[stype] = new_cash
-        elif stype == "properties":
-            prop = self.get_properties()
-            if operation == "add":
-                new_prop = int(prop) + int(amount)
-                self.stats[stype] = new_prop
-            elif operation == "sub":
-                new_prop = int(prop) - int(amount)
-                self.stats[stype] = new_prop
-        elif stype == "cars":
-            cars = self.get_cars()
-            if operation == "add":
-                new_cars = int(cars) + int(amount)
-                self.stats[stype] = new_cars
-            elif operation == "sub":
-                new_cars = int(cars) - int(amount)
-                self.stats[stype] = new_cars
-        elif stype == "rank":
-            rank = self.get_rank()
-            if operation == "add":
-                new_rank = int(rank) + int(amount)
-                self.stats[stype] = new_rank
-            elif operation == "sub":
-                new_rank = int(rank) - int(amount)
-                self.stats[stype] = new_rank
+    def update_stat(self, stat: str, amount: int, operation: int) -> None:
+        if stat not in self.stats:
+            raise KeyError(f'unknown stat {stat}')
+        
+        if operation == "add":
+            self.stats[stat] = self.stats[stat] + amount
+        else:
+            self.stats[stat] = self.stats[stat] - amount
+
+
+    def update_rank(self):
+        rank = self.calc_rank()
+        self.stats['rank'] = rank
+
+
+    def calc_rank(self) -> str:
+        if self.stats['cash'] in range(0,10000):
+            return 'soldato'
+        elif self.stats['cash'] in range(10000,25000):
+            return 'caporegime'
+        elif self.stats['cash'] in range(25000, 50000):
+            return 'consigliere'
+        elif self.stats['cash'] in range(50000, 100000):
+            return 'underboss'
+        elif self.stats['cash'] in range(100000, 1000000):
+            return 'kingpin'
+
 
 
 def create_player(name) -> Player:
