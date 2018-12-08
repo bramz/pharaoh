@@ -144,7 +144,7 @@ def check_sales_total(quantity: int, item: str, price: int, total_cost: int, pla
 
 
 def random_price(price_rangex, price_rangey) -> str:
-    return "$%i" % random.randint(price_rangex, price_rangey)
+    return "${price}".format(price=random.randint(price_rangex, price_rangey))
 
 
 def determine_total_cost(price: int, quantity: int) -> int:
