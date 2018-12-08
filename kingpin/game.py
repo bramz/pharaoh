@@ -1,5 +1,6 @@
 import random
 from player import create_player
+from items import *
 
 
 def start_game():
@@ -21,11 +22,18 @@ def handle_action():
     action = input("Enter an action (buy/sell/stats): ")
 
     if action == "buy":
-        buying_selling(action)
+        buying_items(purchase_type())
     elif action == "sell":
-        buying_selling(action)
+        selling_items(purchase_type())
     elif action == "stats":
-        print(player.get_stats(), player.get_drugs(), player.get_weapons())
+        player.update_rank()
+        print("\n{player} stats:".format(player=player.name))
+        print("{stats}\n{drugs}\n{weapons}\n".format(
+            stats=player.get_stats(), 
+            drugs=player.get_drugs(), 
+            weapons=player.get_weapons()
+            )
+        )
 
 
 def list_drugs() -> dict:
@@ -62,14 +70,7 @@ def receive_units() -> int:
     quantity = input("How many units? ")
     return quantity
 
-
-def buying_selling(action: str):
-    if action == "buy":
-        buying_items(purchase_type())
-    elif action == "sell":
-        selling_items(purchase_type())
-
-
+    
 def buying_items(ptype: str):
     if ptype == "drugs":
         dlist = list_drugs()
@@ -109,26 +110,26 @@ def selling_items(ptype: str):
         print(wlist)
 
         itype = item_type()
-        player_cash = player.get_cash()
+        player_total = player.weapons[itype]
         price = wlist[itype][1:]
         quantity = receive_units()
         total_cost = determine_total_cost(int(price), int(quantity))
-        print(check_sales_total(quantity, itype, price, total_cost, player_cash))
+        print(check_sales_total(quantity, itype, price, total_cost, player_total))
 
 
 def check_buy_total(quantity: int, item: str, price: int, total_cost: int, player_cash: int) -> str:
     if int(total_cost) <= int(player_cash):
-        player.update_items(item, int(quantity), "sub")
-        player.update_stats(total_cost, "sub", "cash")
+        player.update_items(item, int(quantity), "add")
+        player.update_stat("cash", total_cost, "sub")
         return "Purchasing {quantity} units of {item} at ${price} for ${total_cost}".format(quantity=quantity, price=price, total_cost=total_cost, item=item)
     else:
         return "You do not have enough money."
 
 
 def check_sales_total(quantity: int, item: str, price: int, total_cost: int, player_total: int) ->str:
-    if int(player_total) >= int(quantity):
-        player.update_items(item, int(quantity), "add")
-        player.update_stats(total_cost, "add", "cash")
+    if int(quantity) <= int(player_total):
+        player.update_items(item, int(quantity), "sub")
+        player.update_stat("cash", total_cost, "add")
         return "Selling {quantity} units of {item} at ${price} for ${total_cost}".format(quantity=quantity, item=item, price=price, total_cost=total_cost)
     else:
         return "You do not have {quantity} units of {item}".format(quantity=quantity, item=item)
