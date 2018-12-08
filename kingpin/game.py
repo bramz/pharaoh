@@ -5,7 +5,7 @@ from items import *
 
 def start_game():
     name = input("What is your name? ")
-    print('Starting game as %s' % name)
+    print("Starting game as {name}".format(name=name))
  
     global player
     player = create_player(name)
