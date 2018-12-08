@@ -121,7 +121,11 @@ def check_buy_total(quantity: int, item: str, price: int, total_cost: int, playe
     if int(total_cost) <= int(player_cash):
         player.update_items(item, int(quantity), "add")
         player.update_stat("cash", total_cost, "sub")
-        return "Purchasing {quantity} units of {item} at ${price} for ${total_cost}".format(quantity=quantity, price=price, total_cost=total_cost, item=item)
+        return "Purchasing {quantity} units of {item} at ${price} for ${total_cost}".format(
+            quantity=quantity, 
+            price=price, 
+            total_cost=total_cost, 
+            item=item)
     else:
         return "You do not have enough money."
 
@@ -130,7 +134,11 @@ def check_sales_total(quantity: int, item: str, price: int, total_cost: int, pla
     if int(quantity) <= int(player_total):
         player.update_items(item, int(quantity), "sub")
         player.update_stat("cash", total_cost, "add")
-        return "Selling {quantity} units of {item} at ${price} for ${total_cost}".format(quantity=quantity, item=item, price=price, total_cost=total_cost)
+        return "Selling {quantity} units of {item} at ${price} for ${total_cost}".format(
+            quantity=quantity, 
+            item=item, 
+            price=price, 
+            total_cost=total_cost)
     else:
         return "You do not have {quantity} units of {item}".format(quantity=quantity, item=item)
 
