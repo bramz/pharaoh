@@ -24,6 +24,10 @@ Skills to be issued upon spawning/creation. Suppose a received the beginning was
 * Testing
 
 2) Game Design
+* Creation (given a character with a simple set of skills/loot/stats at the lowest rank)
+* Progression (as a player acquires more stats they increase in rank)
+
+3) Game Control
 * Flow Control (turns/actions/players/scores/??)
 * Style (turn-based strategy/??)
 * Storyline/Theme (characters/events/places/??)
