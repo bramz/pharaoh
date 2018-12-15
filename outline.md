@@ -25,7 +25,11 @@ Skills to be issued upon spawning/creation. Suppose a received the beginning was
 
 2) Game Design
 * Creation (given a character with a simple set of skills/loot/stats at the lowest rank)
+characteristics (name, height, weight, age, strength, knowledge, ??)
+skills (building, literature, powers, ??)
 * Progression (as a player acquires more stats they increase in rank)
+loot repository (acquired loot, items, attire, tools, ??)
+finances (total currency, purchases, sales, ??)
 
 3) Game Control
 * Flow Control (turns/actions/players/scores/??)
