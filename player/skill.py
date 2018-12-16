@@ -2,7 +2,7 @@ from dataclasses import dataclass
 from typing import List
 from collection import namedtuple
 
-skill_type = namedtuple('skill type', 'carpentry literature power')
+SKILL_TYPE = namedtuple('Skill type', 'carpentry literature power')
 
 @dataclass(frozen=True)
 class Skill:

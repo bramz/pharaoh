@@ -1,12 +1,12 @@
 import math
 from dataclasses import dataclass
 from typing import Dict
-from player import skill_type
+from player import SKILL_TYPE
 
 
 @dataclass(frozen=True)
 class Level:
-    experience: Dict[skill_type, int]
+    experience: Dict[SKILL_TYPE, int]
 
     def quantify_level(self, score: int):
         for k in self.experience:
