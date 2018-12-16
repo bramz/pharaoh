@@ -10,7 +10,7 @@ install: compile
 	. venv/bin/activate; pip install -r requirements.txt
 
 type:
-	. venv/bin/activate; mypy --ignore-missing-imports .
+	. venv/bin/activate; mypy --ignore-missing-imports **/*.py
 
 run: type
 	. venv/bin/activate; venv/bin/python $(shell pwd)/__main__.py
