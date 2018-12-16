@@ -1,6 +1,4 @@
 import pygame
-from player import skill
-from player import level
 
 NAME = 'Pharaoh'
 
