@@ -1,23 +1,23 @@
 from dataclasses import dataclass
-from collections import namedtuple
+from typing import List
 
 
-@dataclass
+@dataclass(frozen=True)
 class Skill:
-    abilities = namedtuple('Skillname', 'list of abilities')
+    abilities = List[str]
 
 
-@dataclass
+@dataclass(frozen=True)
 class Carpentry(Skill):
-    abilities = namedtuple('Carpentry', 'hammer cut measure build')
+    abilities = ['hammer', 'cut', 'measure', 'build']
 
 
-@dataclass
+@dataclass(frozen=True)
 class Literature(Skill):
-    abilities = namedtuple('Literature', 'reading writing vocabulary')
+    abilities = ['reading', 'writing', 'vocabulary']
 
 
-@dataclass
+@dataclass(frozen=True)
 class Power(Skill):
-    abilities = namedtuple('Power', 'telepathy flight magic invincibility')
+    abilities = ['telepathy', 'flight', 'magic', 'invincibility']
 
