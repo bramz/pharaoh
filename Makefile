@@ -1,4 +1,4 @@
-.PHONY: compile install type run setup
+.PHONY: compile install type run setup test
 
 setup:
 	$(shell which python3.7) -m venv venv ; pip install pip-tools
