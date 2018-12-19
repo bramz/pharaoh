@@ -13,7 +13,7 @@ type:
 	. venv/bin/activate; mypy --ignore-missing-imports **/*.py
 
 test: type
-	. venv/bin/activate; pytest tests/
+	. venv/bin/activate; PYTHONPATH=./pharaoh python -m pytest pharaoh/tests
 
 run: type
 	. venv/bin/activate; venv/bin/python $(shell pwd)/pharaoh/__main__.py
