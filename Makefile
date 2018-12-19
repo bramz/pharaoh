@@ -12,6 +12,10 @@ install: compile
 type:
 	. venv/bin/activate; mypy --ignore-missing-imports **/*.py
 
+test: type
+	. venv/bin/activate; pytest tests/
+
 run: type
-	. venv/bin/activate; venv/bin/python $(shell pwd)/__main__.py
+	. venv/bin/activate; venv/bin/python $(shell pwd)/pharaoh/__main__.py
+
 
