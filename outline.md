@@ -31,9 +31,14 @@ skills (building, literature, powers, ??)
 loot repository (acquired loot, items, attire, tools, ??)
 finances (total currency, purchases, sales, ??)
 
+
+
+
 3) Game Control
 * Flow Control (turns/actions/players/scores/??)
 Overall turn loop/counter
 Action loop and handlers, action types: (buy, sell, trade, cast, ??)
 * Style (turn-based strategy/??)
 * Storyline/Theme (characters/events/places/??)
+
+
