@@ -1,4 +1,4 @@
-from lib.reader import Reader, JSONReader
+from lib.reader import JSONReader
 from engine.story import Script
 
 class TestScript(object):
