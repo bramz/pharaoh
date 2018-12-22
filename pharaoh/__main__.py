@@ -60,9 +60,9 @@ def init() -> None:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 done = True
-            elif event.type == KEYDOWN:
-                if (event.key) == K_RIGHT:
-                    postiion[0] += 1
+#            elif event.type == KEYDOWN:
+#                if (event.key) == K_RIGHT:
+#                    position[0] += 1
 
         for row in range(HEIGHT):
             for column in range(WIDTH):

@@ -1,4 +1,6 @@
 # Python
 venv
 .mypy_cache
+.pytest_cahce
+__pycache__
 *.pyc
