@@ -1,5 +1,6 @@
 pygame==1.9.4
 mypy==0.630
+flake8==3.6.0
 wheel
 pytest
 mypy_extensions==0.4.1
