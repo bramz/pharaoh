@@ -4,12 +4,6 @@ import player.identity
 """ Game Handlers """
 
 def start_sequence(screen):
-    gender = player.identity.receive_gender(screen)
-    name = player.identity.receive_name(screen)
-
-    global ident
-    ident = player.identity.establish_ident(gender, name)
-
     engine_loop()
 
 
@@ -18,4 +12,7 @@ def engine_loop():
 
 
 def handle_sequences():
+    gender = player.identity.receive_gender(screen)
+    name = player.identity.receive_name(screen)
+    ident = player.identity.establish_ident(gender, name)
     print("Welcome, " + ident.name)
