@@ -27,16 +27,14 @@ colors = {
 """ Map constants """
 
 TILESIZE = 20
-WIDTH = 30
-HEIGHT = 50
-
-gamemap = [[DIRT for w in range(WIDTH)] for h in range(HEIGHT)]
-position = [0,0]
+WIDTH = 500
+HEIGHT = 500
+POSITION = [0,0]
 
 """ Main Entry """
 def init() -> None:
     pygame.init()
-    screen = pygame.display.set_mode((500, 500))
+    screen = pygame.display.set_mode((WIDTH, HEIGHT))
     pygame.display.set_caption(NAME)
     done = False
 
