@@ -1,3 +1,7 @@
+from pygame.locals import *
+import pygame, string
+import lib.inputs
+
 """ Player Identity """
 
 class Identity:
@@ -12,13 +16,15 @@ class Identity:
         return self.name
 
 
-def receive_gender() -> str:
-    gender = input("What is your gender? ")
+def receive_gender(screen) -> str:
+    gender = ''
+    lib.inputs.input_box(screen, "What is your gender? " + gender)
     return gender
 
 
-def receive_name() -> str:
-    name = input("What is your name? ")
+def receive_name(screen) -> str:
+    name = ''
+    lib.inputs.input_box(screen, "What is your name? " + name)
     return name
 
 
