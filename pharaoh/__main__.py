@@ -1,5 +1,7 @@
 import pygame, random
 from pygame.locals import *
+from engine.game import start_sequence
+import time
 
 NAME = 'Pharaoh'
 
@@ -25,50 +27,43 @@ colors = {
 """ Map constants """
 
 TILESIZE = 20
-WIDTH = 30
-HEIGHT = 20
-
-gamemap = [[DIRT for w in range(WIDTH)] for h in range(HEIGHT)]
-position = [0,0]
+WIDTH = 500
+HEIGHT = 500
+POSITION = [0,0]
 
 """ Main Entry """
 def init() -> None:
     pygame.init()
-    screen = pygame.display.set_mode((WIDTH*TILESIZE, HEIGHT*TILESIZE))
+    screen = pygame.display.set_mode((WIDTH, HEIGHT))
     pygame.display.set_caption(NAME)
-
-#    screen.fill((255, 255, 255))
-    for rw in range(HEIGHT):
-        for cl in range(WIDTH):
-            rnum = random.randint(0,15)
-            if rnum == 0:
-                tile = NONE
-            elif rnum == 1 or rnum == 2:
-                tile = WATER
-            elif rnum >= 3 and rnum <= 7:
-                tile = GRASS
-            else:
-                tile = DIRT
-
-            gamemap[rw][cl] = tile
-
     done = False
-
-    """ Event Loop """
 
     while not done:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
-                done = True
-#            elif event.type == KEYDOWN:
-#                if (event.key) == K_RIGHT:
-#                    position[0] += 1
+                pygame.quit()
+        
+        start_splash(screen)
+        start_sequence()
 
-        for row in range(HEIGHT):
-            for column in range(WIDTH):
-                pygame.draw.rect(screen, colors[gamemap[row][column]], (column*TILESIZE, row*TILESIZE,TILESIZE,TILESIZE))
 
-        pygame.display.update()
+def start_splash(screen):
+    """ Title """
+    titlefont = pygame.font.SysFont("comicsansms", 72)
+    title = titlefont.render("Pharaoh", True, BROWN)
+    screen.blit(title, (250 - title.get_width() // 2, 200 - title.get_height() // 2))
+
+    """ Pyramid """
+    pygame.draw.polygon(screen, BROWN, ( (25, 400), (250, 250), (475,400), 0))
+
+    """ Credits """
+    footfont = pygame.font.SysFont("comicsansms", 14)
+    footer = footfont.render("Created by: Brock Ramsey & Jahan Addison", True, WHITE)
+    screen.blit(footer, (250 - footer.get_width() // 2, 425 - footer.get_height() // 2))
+   
+    pygame.display.update()
+    time.sleep(5)
+
 
 if __name__ == '__main__':
     init()
